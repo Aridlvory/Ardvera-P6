@@ -109,14 +109,13 @@ Since Primavera P6 is expensive and requires installation, this tool was built t
 ---
 
 ## 🖥️ How to Use
-
 Just Open the link
 
 ---
 
 ## 🎓 Exam Guide
-
 All the best... I pray for you
+
 ---
 
 ## 📁 Project Structure
