@@ -17,7 +17,7 @@ Primavera Was so costly so i just made one
 
 ## 🚀 Live Demo
 
-👉 **[Open Ardvera P6](https://aridlvory.github.io/ardvera-p6)**
+👉 **[Open Ardvera P6](https://aridlvory.github.io/Ardvera-P6/)**
 
 **Login Credentials (Bcoz this is what we use in our lab):**
 ```
