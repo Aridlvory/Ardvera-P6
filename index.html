@@ -866,6 +866,7 @@ tbody td{padding:6px 8px;font-size:11px;white-space:nowrap;color:var(--t1);}
         <div class="rg-btns">
           <button class="rbtn" onclick="exportData()"><span class="ic">📁</span> Export XER</button>
           <button class="rbtn" onclick="printGantt()"><span class="ic">🖨</span> Print</button>
+          <button class="rbtn" onclick="clearStorage()" style="color:rgba(255,60,90,.6);" title="Clear all saved data"><span class="ic">🗑</span> Clear Cache</button>
         </div>
         <div class="rg-label">Output</div>
       </div>
@@ -1496,6 +1497,8 @@ document.addEventListener('keydown',e=>{ if(e.key==='Enter') doLogin(); if(e.key
 //  INIT
 // ══════════════════════════════════════════════
 function initApp(){
+  // Load saved data first
+  const loaded = loadFromStorage();
   buildTabBar();
   renderAll();
   updateStatus();
@@ -1511,6 +1514,7 @@ function initApp(){
   g.style.cssText='position:fixed;bottom:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,rgba(0,200,255,.4),rgba(0,255,200,.4),rgba(0,200,255,.4),transparent);z-index:9998;pointer-events:none;animation:glowBar 4s ease-in-out infinite;';
   const s=document.createElement('style'); s.textContent='@keyframes glowBar{0%,100%{opacity:.4;filter:blur(0)}50%{opacity:1;filter:blur(1px)}}'; document.head.appendChild(s);
   document.body.appendChild(g);
+  if(loaded) toast('✅ Project data restored from cache');
 }
 function renderAll(){
   renderActivities();
@@ -2249,8 +2253,83 @@ function editAct(id){
 }
 
 // ══════════════════════════════════════════════
-//  EXPORT
+//  LOCALSTORAGE PERSISTENCE
 // ══════════════════════════════════════════════
+const SAVE_KEY = 'ardvera_p6_data';
+
+function saveToStorage(){
+  try{
+    localStorage.setItem(SAVE_KEY, JSON.stringify(db));
+    document.getElementById('s1').textContent='💾 Saved';
+    setTimeout(()=>{ document.getElementById('s1').textContent='Ready'; },1500);
+  } catch(e){ console.warn('Save failed',e); }
+}
+
+function loadFromStorage(){
+  try{
+    const raw = localStorage.getItem(SAVE_KEY);
+    if(!raw) return false;
+    const saved = JSON.parse(raw);
+    // Merge saved data into db (keep defaults as fallback)
+    if(saved.activities)    db.activities    = saved.activities;
+    if(saved.relationships) db.relationships = saved.relationships;
+    if(saved.wbs)           db.wbs           = saved.wbs;
+    if(saved.eps)           db.eps           = saved.eps;
+    if(saved.obs)           db.obs           = saved.obs;
+    if(saved.resources)     db.resources     = saved.resources;
+    if(saved.calendars)     db.calendars     = saved.calendars;
+    if(saved.projects)      db.projects      = saved.projects;
+    if(saved.baselines)     db.baselines     = saved.baselines;
+    if(saved.activeProject) db.activeProject = saved.activeProject;
+    if(saved.settings)      db.settings      = {...db.settings,...saved.settings};
+    return true;
+  } catch(e){ console.warn('Load failed',e); return false; }
+}
+
+function clearStorage(){
+  if(!confirm('⚠ This will DELETE all saved project data and reset to defaults.\n\nAre you sure?')) return;
+  localStorage.removeItem(SAVE_KEY);
+  location.reload();
+}
+
+// Auto-save: patch every function that mutates db
+const _origSaveActivity    = saveActivity;
+const _origSaveRelationship= saveRelationship;
+const _origSaveWBS         = saveWBS;
+const _origSaveEPS         = saveEPS;
+const _origSaveOBS         = saveOBS;
+const _origSaveProject     = saveProject;
+const _origSaveResource    = saveResource;
+const _origSaveCalendar    = saveCalendar;
+const _origSaveProjProps   = saveProjProps;
+const _origAddBaseline     = addBaseline;
+const _origDeleteSelected  = deleteSelectedActivity;
+const _origSchedule        = scheduleProject;
+const _origCtxStatus       = ctxStatus;
+const _origCtxDelete       = ctxDelete;
+const _origDeleteWBSById   = deleteWBSById;
+const _origDeleteEPSById   = deleteEPSById;
+const _origDeleteOBSById   = deleteOBSById;
+const _origDeleteResById   = deleteResourceById;
+
+saveActivity         = function(){ _origSaveActivity();    saveToStorage(); };
+saveRelationship     = function(){ _origSaveRelationship(); saveToStorage(); };
+saveWBS              = function(){ _origSaveWBS();          saveToStorage(); };
+saveEPS              = function(){ _origSaveEPS();          saveToStorage(); };
+saveOBS              = function(){ _origSaveOBS();          saveToStorage(); };
+saveProject         = function(){ _origSaveProject();      saveToStorage(); };
+saveResource        = function(){ _origSaveResource();     saveToStorage(); };
+saveCalendar        = function(){ _origSaveCalendar();     saveToStorage(); };
+saveProjProps       = function(){ _origSaveProjProps();    saveToStorage(); };
+addBaseline         = function(){ _origAddBaseline();      saveToStorage(); };
+deleteSelectedActivity = function(){ _origDeleteSelected(); saveToStorage(); };
+scheduleProject     = function(){ _origSchedule();         saveToStorage(); };
+ctxStatus           = function(s){ _origCtxStatus(s);      saveToStorage(); };
+ctxDelete           = function(){ _origCtxDelete();        saveToStorage(); };
+deleteWBSById       = function(c){ _origDeleteWBSById(c);  saveToStorage(); };
+deleteEPSById       = function(i){ _origDeleteEPSById(i);  saveToStorage(); };
+deleteOBSById       = function(i){ _origDeleteOBSById(i);  saveToStorage(); };
+deleteResourceById  = function(i){ _origDeleteResById(i);  saveToStorage(); };
 function exportData(){
   const data={
     project:db.settings, activities:db.activities,
