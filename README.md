@@ -3,7 +3,7 @@ Primavera Was so costly so i just made one
 <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/ec1248a0-b361-46b8-88cd-01bf22c7b858" />
 ### Project Management Information System — Educational Simulation
 
-> **A browser-based Primavera P6 simulator built for Civil Engineering students.**
+> **A browser-based Primavera P6 simulator built for Engineering students.**
 > Runs entirely in a single HTML file — no installation, no server, no cost.
 
 ---
@@ -17,9 +17,9 @@ Primavera Was so costly so i just made one
 
 ## 🚀 Live Demo
 
-👉 **[Open Ardvera P6](https://yourusername.github.io/ardvera-p6)**
+👉 **[Open Ardvera P6](https://aridlvory.github.io/ardvera-p6)**
 
-**Login Credentials:**
+**Login Credentials (Bcoz this is what we use in our lab):**
 ```
 Username: Admin
 Password: Admin
