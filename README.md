@@ -110,44 +110,13 @@ Since Primavera P6 is expensive and requires installation, this tool was built t
 
 ## 🖥️ How to Use
 
-### Option 1 — Open directly
-Just download `index.html` and open it in any modern browser. No server needed.
-
-### Option 2 — Host on GitHub Pages (recommended)
-1. Fork or clone this repository
-2. Go to **Settings → Pages → Source → Deploy from branch → main**
-3. Your site will be live at `https://yourusername.github.io/ardvera-p6`
+Just Open the link
 
 ---
 
-## 🎓 Exam Preparation Guide
+## 🎓 Exam Guide
 
-**Part A practical exam typically requires:**
-
-| Task | How to do it in Ardvera P6 |
-|------|---------------------------|
-| Create a project | Use **EPS tab → New Project** |
-| Create activities | **Activities tab → Add Activity** button |
-| Enter durations | Set `Original Duration` field in the form |
-| Assign predecessors | Add predecessors with **relation type + lag** inside the activity form, or use **Ribbon → Link** |
-| Set relationship type | Choose FS / SS / FF / SF in the predecessor dropdown |
-| Schedule the project | Click **⚡ Schedule (F9)** or press `F9` |
-| Find project duration | See the result banner or **Reports tab** |
-| Identify critical path | **🔴 Critical Path** button — red highlighted activities (TF = 0) |
-| View float values | All floats shown in activity table columns TF and FF |
-
----
-
-## 🛠️ Tech Stack
-
-| Layer | Technology |
-|-------|-----------|
-| UI | HTML5, CSS3 (custom cyberpunk theme) |
-| Logic | Vanilla JavaScript (no frameworks) |
-| Fonts | Rajdhani, Share Tech Mono, Exo 2 (Google Fonts) |
-| Algorithm | CPM — Kahn's topological sort + forward/backward pass |
-| Hosting | GitHub Pages (static) |
-
+All the best... I pray for you
 ---
 
 ## 📁 Project Structure
@@ -175,7 +144,7 @@ Everything — HTML, CSS, JavaScript, fonts (via CDN) — lives in one self-cont
 
 | Role | Credit |
 |------|--------|
-| Concept & Design | **Aridlvory** (TKM College, Mechanical Engineering) |
+| Concept & Design | **Aridlvory** |
 | AI Development | **Claude** by Anthropic |
 | Inspiration | Oracle Primavera P6® |
 | Made for | TKM College Students |
