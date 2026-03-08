@@ -774,7 +774,7 @@ tbody td{padding:6px 8px;font-size:11px;white-space:nowrap;color:var(--t1);}
     <div class="lsysinfo">
       <span>ARDVERA-PMIS v22.12</span>
       <span class="lver">BUILD 2026.03.08</span>
-      <span>TKM COLLEGE</span>
+      <span>TKM — MECH ENGG</span>
     </div>
 
     <!-- Credits -->
@@ -1149,8 +1149,8 @@ tbody td{padding:6px 8px;font-size:11px;white-space:nowrap;color:var(--t1);}
   <div class="mhdr"><h2>🏢 Add EPS Node</h2><button class="mclose" onclick="closeModal('addEPS')">✕</button></div>
   <div class="mbody">
     <div class="frow">
-      <div class="ff"><label>EPS ID *</label><input id="e-id" placeholder="e.g. DIV-CIVIL"/></div>
-      <div class="ff"><label>EPS Name *</label><input id="e-name" placeholder="e.g. Civil Division"/></div>
+      <div class="ff"><label>EPS ID *</label><input id="e-id" placeholder="e.g. DIV-MECH"/></div>
+      <div class="ff"><label>EPS Name *</label><input id="e-name" placeholder="e.g. Mechanical Division"/></div>
     </div>
     <div class="frow">
       <div class="ff"><label>Parent EPS</label><select id="e-parent"><option value="">— Root Level —</option></select></div>
@@ -1390,7 +1390,7 @@ tbody td{padding:6px 8px;font-size:11px;white-space:nowrap;color:var(--t1);}
 // ══════════════════════════════════════════════
 let db = {
   projects: [
-    {id:'PROJ-001', name:'Commercial Tower', eps:'DIV-CIVIL', obs:'PM-TEAM', start:'2026-01-01', end:'2026-12-31', cal:'std', status:'Active'}
+    {id:'PROJ-001', name:'Commercial Tower', eps:'DIV-MECH', obs:'PM-TEAM', start:'2026-01-01', end:'2026-12-31', cal:'std', status:'Active'}
   ],
   activeProject: 'PROJ-001',
   activities: [],
@@ -1403,7 +1403,7 @@ let db = {
   ],
   eps: [
     {id:'CORP', name:'Corporation', parent:'', mgr:'CEO'},
-    {id:'DIV-CIVIL', name:'Civil Division', parent:'CORP', mgr:'John Smith'},
+    {id:'DIV-MECH', name:'Mechanical Division', parent:'CORP', mgr:'John Smith'},
     {id:'DIV-MEP', name:'MEP Division', parent:'CORP', mgr:'Jane Doe'},
   ],
   obs: [
