@@ -31,7 +31,7 @@ Password: Admin
 
 Ardvera P6 is a **free, educational simulation** of Oracle Primavera P6 — the industry-standard project management software used in construction, engineering, and infrastructure projects worldwide.
 
-Since Primavera P6 is expensive and requires installation, this tool was built to help **Civil Engineering students** at TKM College (and beyond) practise for their **Primavera lab exams** using just a web browser.
+Since Primavera P6 is expensive and requires installation, this tool was built to help **Mech Engineering students** at TKM College (and beyond) practise for their **Primavera lab exams** using just a web browser.
 
 > ⚠️ This project is **not affiliated with Oracle Corporation** or Oracle Primavera P6®. It is an independent educational tool built for academic use only.
 
